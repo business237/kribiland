@@ -1,0 +1,186 @@
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
+  darkMode: ['class'],
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
+      },
+      colors: {
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        chart: {
+          '1': 'hsl(var(--chart-1))',
+          '2': 'hsl(var(--chart-2))',
+          '3': 'hsl(var(--chart-3))',
+          '4': 'hsl(var(--chart-4))',
+          '5': 'hsl(var(--chart-5))',
+        },
+        // KribiLand brand colors
+        navy: {
+          DEFAULT: '#061A2B',
+          50: '#E8EDF1',
+          100: '#C5D1DA',
+          200: '#9DB3C4',
+          300: '#6E91AD',
+          400: '#4A7491',
+          500: '#2E5A78',
+          600: '#1B4261',
+          700: '#0E2E48',
+          800: '#061A2B',
+          900: '#03101C',
+          950: '#020B14',
+        },
+        ocean: {
+          DEFAULT: '#0B3A5B',
+          50: '#E6F0F5',
+          100: '#C2D9E8',
+          200: '#94BDD3',
+          300: '#5E9BB8',
+          400: '#3A7A9C',
+          500: '#1E5C7E',
+          600: '#0B3A5B',
+          700: '#082D45',
+          800: '#051F30',
+          900: '#031420',
+        },
+        sky: {
+          DEFAULT: '#4DB8E8',
+          50: '#EAF7FD',
+          100: '#D0EDF9',
+          200: '#A8DDF2',
+          300: '#7ACCEB',
+          400: '#4DB8E8',
+          500: '#1F9DD3',
+          600: '#157FB0',
+          700: '#10648C',
+          800: '#0C4D6B',
+          900: '#08344A',
+        },
+        turquoise: {
+          DEFAULT: '#20B8B0',
+          50: '#E5F7F6',
+          100: '#C2EDEB',
+          200: '#8FDAD7',
+          300: '#5BC8C4',
+          400: '#20B8B0',
+          500: '#1A9B94',
+          600: '#147C76',
+          700: '#0F5D59',
+          800: '#0B3E3C',
+          900: '#061F1E',
+        },
+        sun: {
+          DEFAULT: '#F47C20',
+          50: '#FEEDE0',
+          100: '#FDD4B8',
+          200: '#FBB07E',
+          300: '#F89858',
+          400: '#F47C20',
+          500: '#D96415',
+          600: '#B04E0F',
+          700: '#873D0B',
+          800: '#5E2A08',
+          900: '#3A1905',
+        },
+        golden: {
+          DEFAULT: '#F5B942',
+          50: '#FEF5E0',
+          100: '#FDE9B8',
+          200: '#FBD67E',
+          300: '#FAC85A',
+          400: '#F5B942',
+          500: '#E0A028',
+          600: '#B07D1C',
+          700: '#835E15',
+          800: '#563E0E',
+          900: '#2E2108',
+        },
+        warm: '#F8F6F0',
+      },
+      keyframes: {
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
+        },
+        'fade-up': {
+          from: { opacity: '0', transform: 'translateY(24px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        'fade-in': {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
+        'scale-in': {
+          from: { opacity: '0', transform: 'scale(0.96)' },
+          to: { opacity: '1', transform: 'scale(1)' },
+        },
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+        'fade-up': 'fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'fade-in': 'fade-in 0.7s ease-out forwards',
+        'scale-in': 'scale-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+      },
+      fontFamily: {
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-playfair)', 'Georgia', 'serif'],
+      },
+      fontSize: {
+        xs: ['0.8125rem', { lineHeight: '1.25rem' }],
+        sm: ['0.9375rem', { lineHeight: '1.4rem' }],
+      },
+    },
+  },
+  plugins: [require('tailwindcss-animate')],
+};
+export default config;
