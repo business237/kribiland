@@ -89,10 +89,10 @@ export async function createBookingAction(formData: FormData) {
     redirect(`/logements/${propertyId}?booking_error=${encodeURIComponent(message)}`);
   }
 
-  // Passer le statut à 'pending_payment' pour la réservation instantanée
+  // Passer le statut à 'payment_pending' pour la réservation instantanée
   await supabase
     .from('bookings')
-    .update({ status: 'pending_payment' })
+    .update({ status: 'payment_pending' })
     .eq('id', bookingId);
 
   revalidatePath('/mon-compte/reservations');
@@ -121,7 +121,7 @@ export async function clientConfirmPaymentAction(formData: FormData) {
       payment_confirmed_by_client: true,
       payer_phone_number: payerPhoneNumber || null,
       payer_network: payerNetwork || null,
-      status: 'pending_payment',
+      status: 'payment_pending',
     })
     .eq('id', bookingId)
     .eq('client_id', user.id)

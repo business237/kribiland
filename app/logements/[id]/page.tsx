@@ -160,11 +160,11 @@ export default async function PropertyDetailPage({ params, searchParams }: Prope
                   </div>
                   <div className="flex items-center gap-2">
                     <Bed className="h-5 w-5 text-sun" />
-                    <span>{property.bedrooms || 1} chambre{property.bedrooms > 1 ? 's' : ''}</span>
+                    <span>{(property.bedrooms ?? 1)} chambre{(property.bedrooms ?? 1) > 1 ? 's' : ''}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Bath className="h-5 w-5 text-sun" />
-                    <span>{property.bathrooms || 1} salle{property.bathrooms > 1 ? 's' : ''} de bain</span>
+                    <span>{(property.bathrooms ?? 1)} salle{(property.bathrooms ?? 1) > 1 ? 's' : ''} de bain</span>
                   </div>
                   {property.living_rooms != null && property.living_rooms > 0 && (
                     <div className="flex items-center gap-2">
@@ -279,9 +279,21 @@ export default async function PropertyDetailPage({ params, searchParams }: Prope
                   </p>
                   <div className="h-[350px] w-full overflow-hidden rounded-2xl ring-1 ring-navy/10">
                     <PropertyMap
-                      latitude={property.latitude}
-                      longitude={property.longitude}
-                      title={property.title}
+                      properties={[{
+                        id: property.id,
+                        name: property.title,
+                        type: property.type,
+                        location: property.quartier || 'Kribi',
+                        pricePerNight: property.price_per_night,
+                        currency: 'FCFA',
+                        rating: property.average_rating || 0,
+                        reviewCount: reviews?.length || 0,
+                        image: mainImage,
+                        features: [],
+                        latitude: property.latitude,
+                        longitude: property.longitude,
+                      }]}
+                      height="350px"
                     />
                   </div>
                 </div>
@@ -291,10 +303,10 @@ export default async function PropertyDetailPage({ params, searchParams }: Prope
               <div className="pt-4">
                 <div className="flex items-center gap-3 mb-6">
                   <h2 className="font-display text-2xl font-bold text-navy">Avis des voyageurs</h2>
-                  {property.average_rating > 0 && (
+                  {(property.average_rating ?? 0) > 0 && (
                     <div className="flex items-center gap-1 bg-sun/10 text-sun-700 px-3 py-1 rounded-full text-sm font-bold">
                       <Star className="h-4 w-4 fill-sun text-sun" />
-                      <span>{property.average_rating.toFixed(1)}</span>
+                      <span>{(property.average_rating ?? 0).toFixed(1)}</span>
                       <span className="text-navy/60 font-normal">({reviews?.length || 0})</span>
                     </div>
                   )}
@@ -348,10 +360,10 @@ export default async function PropertyDetailPage({ params, searchParams }: Prope
                     </span>
                     <span className="text-xs font-bold text-navy/60 uppercase ml-1">FCFA / nuit</span>
                   </div>
-                  {property.average_rating > 0 && (
+                  {(property.average_rating ?? 0) > 0 && (
                     <div className="flex items-center gap-1 text-sm font-semibold text-navy">
                       <Star className="h-4 w-4 fill-sun text-sun" />
-                      <span>{property.average_rating.toFixed(1)}</span>
+                      <span>{(property.average_rating ?? 0).toFixed(1)}</span>
                     </div>
                   )}
                 </div>

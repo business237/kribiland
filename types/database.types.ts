@@ -119,6 +119,8 @@ export type Database = {
           guests: number
           id: string
           payment_confirmed_by_client: boolean
+          payer_phone_number: string | null
+          payer_network: string | null
           property_id: string
           rejection_reason: string | null
           status: Database["public"]["Enums"]["order_status"]
@@ -134,6 +136,8 @@ export type Database = {
           guests: number
           id?: string
           payment_confirmed_by_client?: boolean
+          payer_phone_number?: string | null
+          payer_network?: string | null
           property_id: string
           rejection_reason?: string | null
           status?: Database["public"]["Enums"]["order_status"]
@@ -149,6 +153,8 @@ export type Database = {
           guests?: number
           id?: string
           payment_confirmed_by_client?: boolean
+          payer_phone_number?: string | null
+          payer_network?: string | null
           property_id?: string
           rejection_reason?: string | null
           status?: Database["public"]["Enums"]["order_status"]

@@ -5,6 +5,7 @@ import { updateServiceAction } from '@/app/actions/service-actions';
 import { ImageUploader } from '@/components/dashboard/image-uploader';
 import { StatusBadge } from '@/components/dashboard/status-badge';
 import { ServiceLocationFields } from '@/components/dashboard/service-location-fields';
+import { LongTermRentalFields } from '@/components/dashboard/long-term-fields';
 import { PROPERTY_TYPE_OPTIONS } from '@/lib/listing-constants';
 import { notFound } from 'next/navigation';
 import * as LucideIcons from 'lucide-react';
@@ -183,12 +184,7 @@ export default async function EditAnnoncePage({
                     <Field label="Salles de bain" name="bathrooms" type="number" defaultValue={String(property.bathrooms ?? 1)} />
                 </div>
 
-                <SelectField label="Mode de location" name="rental_mode" defaultValue={property.rental_mode || 'courte_duree'} options={[
-                    { value: 'courte_duree', label: 'Courte durée' },
-                    { value: 'longue_duree', label: 'Longue durée' },
-                    { value: 'les_deux', label: 'Les deux' },
-                ]} />
-                <LongTermFields property={property} />
+                <LongTermRentalFields property={property} />
 
                 <div className="grid grid-cols-2 gap-4">
                     <Field label="Nuits minimum" name="min_nights" type="number" defaultValue={String(property.min_nights ?? 1)} />
@@ -254,28 +250,6 @@ function AmenityGroups({ amenities, selectedIds }: { amenities: Array<{ id: stri
                 })}
             </div>
         </div>
-    );
-}
-
-function LongTermFields({ property }: { property: any }) {
-    return (
-        <fieldset className="long-term-fields rounded-xl border border-navy-100 bg-warm/40 p-4">
-            <legend className="px-1 font-display text-lg font-bold text-navy-800">Informations longue durée</legend>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <Field label="Prix / mois (FCFA)" name="price_per_month" type="number" defaultValue={property.price_per_month == null ? '' : String(property.price_per_month)} />
-                <Field label="Caution (FCFA)" name="deposit_amount" type="number" defaultValue={property.deposit_amount == null ? '' : String(property.deposit_amount)} />
-                <Field label="Nombre de mois d'avance demandés" name="advance_months" type="number" defaultValue={property.advance_months == null ? '' : String(property.advance_months)} />
-                <SelectField label="Type d'électricité" name="electricity_type" defaultValue={property.electricity_type || ''} options={['Compteur individuel', 'Compteur partagé', 'Groupe électrogène', 'Aucun'].map((value) => ({ value, label: value }))} />
-                <SelectField label="Source d'eau" name="water_source" defaultValue={property.water_source || ''} options={['Robinet CDE', 'Forage', 'Puits', 'Citerne', 'Aucun'].map((value) => ({ value, label: value }))} />
-                <SelectField label="Accès à la route" name="road_access" defaultValue={property.road_access || ''} options={['Bord de route bitumée', 'À moins de 100m', 'Accès non bitumé', 'Éloigné de la route'].map((value) => ({ value, label: value }))} />
-                <div className="flex flex-wrap items-center gap-4 sm:col-span-2">
-                    <CheckboxField label="Clôturé" name="is_fenced" defaultChecked={!!property.is_fenced} />
-                    <CheckboxField label="Portail" name="has_gate" defaultChecked={!!property.has_gate} />
-                    <CheckboxField label="Meublé" name="is_furnished" defaultChecked={!!property.is_furnished} />
-                </div>
-            </div>
-            <style jsx>{`form:has(select[name="rental_mode"] option[value="longue_duree"]:checked) .long-term-fields, form:has(select[name="rental_mode"] option[value="les_deux"]:checked) .long-term-fields { display: block; } .long-term-fields { display: none; }`}</style>
-        </fieldset>
     );
 }
 

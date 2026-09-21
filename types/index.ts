@@ -1,9 +1,14 @@
+import type { Database } from './database.types';
+
 export type PropertyType =
+  | Database['public']['Enums']['property_type']
   | 'hotel'
   | 'Chambre'
   | 'Appartement & studio'
   | 'Maison / villa'
-  | 'Autre';
+  | 'Autre'
+  | (string & {});
+
 
 export interface Property {
   id: string;
